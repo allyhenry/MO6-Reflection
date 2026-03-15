@@ -1,0 +1,125 @@
+---
+title: "M06-Reflection Essay-Advanced Data Wrangling"
+author: "Ally Henry"
+date: '`r format(Sys.time())`'
+format: 
+  html: 
+    output-dir: docs
+    toc: true
+    toc-depth: 4
+    number-sections: true
+    code-link: true
+    embed-resources: true
+editor: visual
+execute: 
+  freeze: auto
+---
+
+```         
+#| label: setup
+#| include: false
+library(tidyverse)
+```
+
+# Essay Prompt
+
+1.  **Summarize what you learned about Tidyverse tricks presented in Step 1 by focusing on the new things you learned that were not dealt with in M05.**
+
+::: callout-note
+## Key Takeaways
+
+While Module 05 provided a solid foundation in the "grammar of data manipulation" through basic Tidyverse verbs, Step 1 of Module 06 expands upon these fundamentals by introducing more efficient, "rapid-fire" shortcuts that streamline the data wrangling process. While we learned the essential mechanics of count(), group_by(), and the pipe operator in M05, David Robinson’s presentation introduces advanced arguments within the count() function—specifically sort, wt (weight), and name—which eliminate the need for secondary mutate() or arrange() steps. A particularly powerful evolution from M05 is the ability to create new variables dynamically within the count() function itself, such as aggregating years into decades on the fly, which avoids the multi-step process of defining a variable before counting it.
+
+Furthermore, the video moves beyond the basic grouping techniques taught in M05 by introducing the add_count() function. This is presented as a superior alternative to the standard group_by() and mutate(n = n()) workflow because it preserves the original row-level detail while appending group-level totals, making it much easier to filter for specific group sizes without collapsing the dataset. Perhaps the most significant departure from the M05 curriculum is the use of summarize() to create "list columns." While the previous module focused on summarizing data into single numeric values like means or counts, this advanced trick allows users to store complex objects, such as entire statistical models or T-tests, within a single cell of a tibble. By mastering these Step 1 techniques, a Tidyverse user moves from simply knowing how to transform data to knowing how to do so with greater fluency and less "boilerplate" code.
+
+Finally, the integration of the broom package represents a significant leap in the data analysis workflow by extending the "Tidy" philosophy into the realm of statistical modeling. David Robinson demonstrates how to use the tidy () function to unpack those complex objects, such as T-tests or linear models, stored within list columns. By converting these statistical outputs back into a workable data frame, it becomes possible to treat model results as data itself. This allows for the seamless visualization of confidence intervals or model coefficients directly through ggplot2, effectively bridging the gap between data transformation and formal statistical inference in a single, fluent pipeline.
+:::
+
+2.  **What do you think about David Robinson's impromptu screencast performance in Step 2?  How much were you able to understand?**
+
+Watching David Robinson’s impromptu screencast was nice to see because it showed that even for a guru, data science is a messy, trial-and-error process. One of the most relatable parts of the performance was seeing him struggle with the ggflags package. It was actually encouraging to see him run into bugs and have to use "binary search" debugging to figure out why his code wasn't working. While the general flow of his work was clear, his use of the reorder_wihtin() function and some of the more complex logic inside the ggplot aesthetics were definitely challenging to follow at first. It moved very fast, and it took a moment to realize he was creating a custom function to automate his slope graphs so he wouldn't have to keep re-typing the same code.
+
+Despite those complex moments, the core "Tidyverse" logic was surprisingly easy to understand because it followed the same patterns we've been practicing. I could clearly see him using pivot_longer to fix the data structure and mutate() to clean up country names that were missing or incorrectly coded. It was cool to see how he didn’t just start making random graphs; he spent time at the beginning just counting things and looking up definitions of "gigawatt hours" to make sure he actually understood the numbers he was looking at. Seeing him move from a simple bar chart to a sophisticated, faceted slope graph showed me how a real project evolves through constant iteration rather than being perfect on the first try. 
+
+3.  **In Step 3, you saw two videos, one showing initial data cleaning and the other showing further cleaning. Describe the two processes. What are the big differences between the two? How do the differences result in the differences in final sample size?** 
+
+In the **i**nitial cleaning video, the process starts with baseline quality control to "filter out the noise." This involves verifying that every respondent consented to the study and passed primary attention checks, which is crucial for identifying participants who were rushing or not reading carefully. The focus here is on confirming that the sample matches necessary demographics and core behaviors, such as recent coffee shop visits. Because this phase eliminates "bad" responses and bots at once, it typically results in the most significant drop in the total sample size.
+
+The further cleaning video dives much deeper into the internal logic of the research data itself. Instead of just checking for general validity, this part of the process examines specific survey sections—like perceived safety or mask-wearing behaviors—to ensure the answers provided are consistent and actually make sense. By using specialized tools like the janitor and sjPlot packages, the data is polished and prepared for professional reporting or export. This stage causes a much smaller drop in sample size because it is only trimming away specific outliers or incomplete data points, leaving a final sample that is highly refined and reliable for analysis.
+
+4.  **In Step 4, you learned how to create an Revealjs presentation. What's your impression of the Revealjs presentation? Describe its capabilities as you learned from the video. What are its strengths and weaknesses compared with PPT?**
+
+Creating a Revealjs presentation through Quarto felt like a major step up from traditional tools because it treats a presentation more like a dynamic website than a static pile of slides. One of the coolest capabilities I learned from the video is the "Multiplex" feature, which allows a presenter to control the slides on the audience's own devices in real-time. It also has built-in interactive tools like a "chalkboard" for drawing directly on the screen and a "zoom" function that lets you hit a key to instantly blow up a specific chart or piece of code for the audience. The way it handles code is especially impressive; you can highlight specific lines of R code and even "execute" them so the output appears right on the slide with a click.
+
+Compared to PowerPoint, the big strength of Revealjs is its reproducibility and "all-in-one" nature. Since it’s built using code, you can use "inline coding" so that if your data changes, the numbers and charts in your presentation update automatically without you having to re-copy and paste anything. It’s also much better for organizing large presentations because it uses a 2D grid. You can have main slides that move horizontally and "minor" or optional detail slides that you only navigate to vertically if someone asks a specific question. However, a clear weakness is that it has a much much steeper learning curve than PPT. Instead of just clicking a button to change a color, you often have to edit SCSS variables or CSS code to customize the theme, which can be a bit challenging to follow if you aren't familiar with coding aesthetics.
+
+5.  **In Step 5, you were asked to create a Revealjs presentation. Provide a link to the presentation you published on the web.  Briefly describe what the presentation is about. What did you learn from the experience of the Revealjs presentation?** 
+
+Presentation Link: <https://rpubs.com/achenry/1410413>[^1]
+
+[^1]: This presentation was published using RPubs to demonstrate web-hosting capabilities for Quarto documents.
+
+About: The presentation outlines my plan for a data-driven marketing portfolio. It describes the site's structure, including a personal home page, a blog-style section for project case studies, an interactive dashboard for technical skills, and the integration of Google Analytics to track visitor engagement.
+
+Learning Experience: I learned that Revealjs is more powerful than PowerPoint because it allows me to "code" my slides, providing far more control over the layout and technical settings through the YAML header. Navigating the publishing process taught me how to move from a local RStudio project to a live web URL. This showed me how presentations can act as interactive HTML documents, which is a much more modern and professional way to share marketing research and technical projects.
+
+6.  **My advanced wrangling lecture in Step 6 introduced new concepts not covered in M05, such as joining relational databases. Pick three of them, describe when to use them, and give one coding example along with an output for each function. To clarify, you are expected to do literate programming by weaving your narratives with the code.**
+
+#### **1. Relational Data: Inner Joins**
+
+The `inner_join()` function is essential when working with relational databases. You use it when you have two separate tables and only want to keep the rows where there is a match in both. This is perfect for identifying "active" participants by matching a unique ID across different datasets.
+
+```         
+# Creating two small datasets to demonstrate the join
+customers <- data.frame(id = c(1, 2, 3), name = c("Ally", "Joe", "Sam"))
+orders <- data.frame(id = c(1, 2), product = c("Laptop", "Tablet"))
+
+# Performing the inner join to find active buyers
+active_customers <- customers %>% 
+  inner_join(orders, by = "id")
+
+active_customers
+```
+
+#### **2. Efficient Column Operations: `across()`**
+
+The `across()` function is a major upgrade for data wrangling efficiency. It is used when you need to apply the same transformation—like calculating a mean or rounding—to multiple columns at the same time. This keeps the code much cleaner than writing a separate line for every single column.
+
+```         
+# Using across to find the average of multiple numeric columns at once
+site_data <- data.frame(clicks = c(10, 20, 30), views = c(100, 200, 300))
+
+summary_table <- site_data %>% 
+  summarize(across(everything(), mean))
+
+summary_table
+```
+
+#### **3. Multi-Condition Logic: `case_when()`**
+
+While a basic `if_else` is fine for two options, `case_when()` is the best tool for complex recoding with multiple conditions. In marketing, this is the standard way to segment customers into different "tiers" (like Gold, Silver, or Bronze) based on their specific spending levels.
+
+```         
+# Creating a spending dataset
+marketing_spend <- data.frame(user = c("A", "B", "C"), spend = c(50, 150, 500))
+
+# Categorizing users into tiers based on spend
+segments <- marketing_spend %>% 
+  mutate(tier = case_when(
+    spend >= 400 ~ "Gold",
+    spend >= 100 ~ "Silver",
+    TRUE ~ "Bronze" # This handles everyone else
+  ))
+
+segments
+```
+
+7.  **Data wrangling is like laying a foundation/basement for a building, while visualization is building a structure above the basement. Working in a basement is not a glamorous job at all. No one notices it; people will see what they can see above the ground and judge it, but without the hard work you did in the basement, the building will never stand well. Besides, wrangling is hard. You learned dplyr and tidyr in this module, but there is still more to learn in M07 and M08. What did you like the most about working with the tools you learned in this module? Elaborate on your point.** 
+
+What I liked most about working with the tools in this module—specifically advanced functions like inner_join(), across(), and case_when()—is the sense of control and "structural integrity" they provide. Just like the basement metaphor suggests, these tools are the behind-the-scenes work that makes the final marketing insight possible.
+
+I particularly enjoyed the efficiency of the across() function. In previous modules, cleaning multiple columns felt like repetitive manual labor. Using across() felt like installing a high-tech system in that "basement" that automates the hard work. Additionally, using inner_join() showed me how to connect different "rooms" of data perfectly; it’s satisfying to see two messy, separate datasets click together into one clean, usable table. While the work might not be "glamorous" and the audience only sees the final chart, knowing that the data is joined correctly and recoded accurately through case_when() gives me the confidence that my "building" won't collapse when someone looks closely at the metrics.
+
+8.  **What seems to be the challenge, if any, for you when you try to master the wrangling tools? How may you be able to overcome the challenge? Let me share a little bit about my learning journey. The first time I saw David Robinson's performance, I was so impressed that I paused the video and typed his code. It took all day to type the code. That experience was very helpful, but I realized that I could shorten my learning curve by focusing on the basics. I couldn't understand a lot of the tools he was using. So, I tried to study those packages in Tidyverse and watch his video once in a while to check how much I improved. I found this method very effective. Thus, I believe that you will be ready to absorb online resources like YouTube much more effectively once you finish this program. Hope this experience helps you.**
+
+The greatest challenge in mastering these tools is the logic gap between understanding what a single function does and knowing how to pipe multiple advanced functions together to solve a complex real world data problem. It can be overwhelming to watch experts work at high speeds, but I plan to overcome this by focusing on the basics of the Tidyverse logic before trying to absorb every advanced trick at once. By building a strong foundation and practicing through literate programming by typing out the code manually to build muscle memory, I can shorten my learning curve. This strategy will eventually allow me to utilize online resources and tutorials more effectively as I will understand the why behind the code rather than just the how.

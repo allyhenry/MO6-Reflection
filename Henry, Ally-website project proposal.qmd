@@ -1,0 +1,56 @@
+---
+title: "MSDM Website Proposal"
+subtitle: "Marketing Portfolio Project"
+author: "Ally Henry"
+institute: "IBM 6400, Cal Poly Pomona"
+date: "`r Sys.Date()`"
+format: 
+  revealjs:
+    theme: serif
+    width: 1600
+    height: 900
+    footer: "MSDM Portfolio Proposal"
+    transition: slide
+    transition-speed: default
+    incremental: false
+    toc: true
+    toc-depth: 1
+    slide-number: true
+    scrollable: true
+    smaller: true
+    code-fold: false
+    code-overflow: wrap
+    embed-resources: true
+---
+
+## Website Vision
+This website will serve as my professional marketing portfolio.
+- **Goal:** Showcase data-driven projects.
+- **Audience:** Potential employers and collaborators.
+
+## The Home Page
+The home page will feature:
+- A personal statement.
+- A professional headshot.
+- Quick links to my latest case studies.
+
+## Marketing Projects Slide {.smaller}
+This page will function like a blog where I showcase:
+1. Data visualizations.
+2. Performance metrics.
+3. Detailed case studies.
+
+::: {.notes}
+Speaker Note: Mention that I plan to update this monthly.
+:::
+
+## Technical Components
+- **Dashboard:** An interactive R Shiny or Tableau embed.
+- **Revealjs:** This very presentation!
+- **Analytics:** Google Analytics to track site traffic.
+
+## Contact & Connect
+- LinkedIn Profile
+- GitHub Repository
+- Email Link
+---
